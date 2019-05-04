@@ -1,0 +1,33 @@
+baseurl = "/"
+languageCode = "en-us"
+title = "Mathematics, Music, and Musings"
+theme = "hugo-xmin"
+googleAnalytics = ""
+disqusShortname = ""
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+preserveTaxonomyNames = true
+footnotereturnlinkcontents = "↩"
+
+[permalinks]
+    post = "/post/:year/:month/:day/:slug/"
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
+[[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    weight = 3
+[[menu.main]]
+    name = "GitHub"
+    url = "https://github.com/millerchangym"
+	weight = 4
+
+[params]
+    description = "A website built through Hugo and blogdown, using the Hugo XMin Theme."
+    footer = "&copy; [Yeng Miller-Chang](https://yihui.name) 2019 | [Github](https://github.com/millerchangym)"
