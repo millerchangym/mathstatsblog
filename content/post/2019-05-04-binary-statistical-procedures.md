@@ -1,8 +1,6 @@
 ---
-title: Making the Case for Mathematics
+title: Binary Statistical Procedures Are Arbitrary
 author: Yeng Miller-Chang
 date: "2019-05-04"
-tags:
-  - Tutorial
 draft: true
 ---
