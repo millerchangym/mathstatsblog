@@ -3,9 +3,18 @@ title: Small-Sample Odds Ratios in C
 author: Yeng Miller-Chang
 date: "2019-05-04"
 draft: true
+tags:
+  - C
+  - graduate-school
+  - probability
+  - statistics
+  - odds-ratio
+  - confidence-interval
+  - newtons-method
+  - small-sample
 ---
 
-*This was the final project that I did for STAT 580: Statistical Computing in the Fall 2019 semester, taught by Dr. Karin Dorman at Iowa State University. Within one semester, the goal of the course was to learn how to perform statistical computation from C, starting from only knowing a bit about R, and nothing about C. If you ever get the opportunity to take this course, I strongly recommend it. It has been one of the best learning experiences I've ever had.*
+*This was the final project that I did for STAT 580: Statistical Computing in the Fall 2019 semester, taught by Dr. Karin Dorman at Iowa State University. Within one semester, the goal of the course was to learn how to perform statistical computation using C, starting from only knowing a bit about R, and nothing about C. If you ever get the opportunity to take this course, I strongly recommend it. It has been one of the best learning experiences I've ever had.*
 
 # Mathematical Exposition
 
