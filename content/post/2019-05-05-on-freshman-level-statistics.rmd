@@ -1,0 +1,119 @@
+---
+title: On Freshman-Level Statistics
+author: Yeng Miller-Chang
+date: "2019-05-05"
+draft: true
+tags:
+  - statistics
+  - education
+---
+
+To make sure that there is a shared understanding of what I mean by "freshman-level statistics," I am referring to a statistics course which is usually required for many liberal arts and health sciences majors, requires no calculus, and more or less, covers the same material as the [Advanced Placement (AP) Statistics syllabus](https://apcentral.collegeboard.org/pdf/ap-statistics-course-description.pdf?course=ap-statistics); i.e.,
+
+- Measures of central tendency and spread
+
+- Basic data visualizations
+
+- Basic probability, some mention of the normal distribution
+
+- Sampling distributions of the sample proportion and sample mean
+
+- Hypothesis testing and confidence intervals (``$t$`` tests, ``$\chi^2$`` tests, etc.)
+
+For many students, this will often be their only statistics course. I believe it is fair to say that the culmination of the entire course is hypothesis testing, as that is what the course content builds up to.
+
+I'm not going to cite any of the many examples that one can find online of the faults of hypothesis testing and the use of ``$p$``-values; however, I'd like to mention that the way this freshman-level statistics course is structured doesn't help matters at all.
+
+## A ``$t$``-Test Example
+
+Consider the following example, which is similar to what I have run into in my professional work: suppose you manage cashiers in a retail store. You're not particularly interested in measuring any cashier's individual performance, but want to know how people feel about your cashiers overall. You've gotten complaints from various people about their experiences at your store.
+
+To get an idea of how customers feel about your cashiers, you ask them a five-point question such as:
+
+<center>
+*How satisfied are you with how you were treated by your cashier today?*
+</center>
+
+with rating scale 1, 2, 3, 4, and 5; 5 being extremely satisfied, 3 being neutral, and 1 being extremely dissatisfied.
+
+You survey 1000 people, and compute the average rating. The average score is 3.2, and let's suppose that the sample standard deviation is 0.3.
+
+Because of the magnitude of complaints that you've gotten, you implement a training for your cashiers (because you have to), and you ask another 500 people the same question as the previous one. The average score after the training is 3.3, with a standard deviation of 0.3.
+
+```{r}
+sattherwaite_df <- function(s_1, n_1, s_2, n_2) {
+  numerator <- (s_1^2/n_1 + s_2^2/n_2)^2
+  denominator <- (1/(n_1-1))*(s_1^2/n_1)^2 + (1/(n_2-1))*(s_2^2/n_2)^2
+  return(numerator/denominator)
+}
+
+pt((3.3 - 3.2)/sqrt(0.3^2/500 + 0.3^2/1000), 
+   df = sattherwaite_df(0.3, 500, 0.3, 1000), 
+   lower.tail = FALSE) * 2
+``` 
+You decide that upon looking at this ``$p$``-value that, well, the ``$p$``-value is much less than ``$0.01$``, so your training **must** have improved the customer experience with your cashiers!
+
+## What is Wrong with the ``$t$``-Test Example
+
+The example above is essentially a textbook example of what a two-sample ``$t$``-test would look like, when you assume unequal population standard deviations. On the surface, it appears that every step is executed correctly:
+
+- The two samples have sample sizes both greater than 30, so the normality condition (of the difference of sample means) must be (approximately) true.
+
+- The sample means and sample standard deviations were computed.
+
+- The test statistic was computed correctly.
+
+- The Sattherwaite degrees of freedom was computed correctly.
+
+- The ``$p$``-value was computed correctly.
+
+So what is wrong with the question?
+
+### There is no skepticism about the data.
+
+Many people may look at the example above and think, well, the average has increased, so therefore, the training must have improved the customer experience -- and the hypothesis test we executed above does support that. 
+
+When we look at sample averages, let's consider the fact that we're using a 5-point scale for this question. Between the two averages, we saw an increase of 0.1. We have the pre-survey, with an average of 3.2 with 1000 people; and the post-survey, with an average of 3.3 with 500 people. The first question I like to pose in situations where only sample averages are compared is something like
+
+<center>
+**What would it take for the pre-sample to have an average equal to that of the post-sample?**
+</center>
+
+Each person in the pre-sample has a weight of $\dfrac{1}{1000}$ on the mean. We have a difference of 0.1 between the pre-sample and the post-sample. Therefore, it would take ``$x$`` people increasing their score by only one point, where ``$x$`` satisfies
+``\begin{equation}
+\dfrac{x}{1000} = 0.1 \implies x = 100\text{.}
+\end{equation}``
+So therefore, **all it takes 100 out of the 1000 people scoring their satisfaction one point higher in the pre-survey to make the pre-survey and post-survey averages the same value**! When considering the fact that the question is based on a 5-point scale, **this is completely plausible**, which leads me to my next point.
+
+### Measurement error is ignored.
+
+The ``$t$``-test example posed above uses a [Likert scale](https://en.wikipedia.org/wiki/Likert_scale) to drive its data points, which is extremely common throughout the social sciences, and averages like what are seen in this example are computed frequently.^[This should not be misconstrued as a criticism of the social sciences. Often criticisms of computing averages of ordinal data are to the tune of "you shouldn't average ordinal data," but I've never seen an alternative presented.] With Likert scales, especially those with wide ranges, there isn't any concrete difference, say, between choosing between a 4 or a 5 in the example above. 
+
+### Large samples are a problem.
+
+In freshman-level statistics courses, one is taught that (holding everything else constant) increasing sample sizes increases the probability of rejecting ``$H_0$`` for a hypothesis test when ``$H_1$`` is true (one can simply look at the formula of the test statistic to see this). However, given the magnitude of the sample sizes that we have in this example, one could argue even a very small difference in the means would lead to rejecting ``$H_0$``. Some simple computation can show that all it takes is a mean slightly larger than 3.24 to have a ``$p$``-value less than 0.01. Social scientists have tried to address this problem using metrics such as Coehn's ``$d$`` (a.k.a. "effect size"), but I do not know of any version of Coehn's ``$d$`` allowing for unequal population standard deviations.
+
+### There is more to the story than the sample average.
+
+Especially in situations where users may only compare sample averages, the differing sample sizes between the two samples implies that individuals chosen from both surveys have unequal influence. In the pre-survey sample average, each individual has weight ``$\dfrac{1}{1000}$``. In the post-survey sample average, each individual has weight ``$\dfrac{1}{500}$``, which is **twice** the influence of an individual in the pre-survey sample average. This is an informal way of of illustrating the consequences of the standard-deviation formula
+``\begin{equation}
+\text{SD}\left(\bar{X}\right) = \dfrac{\sigma}{\sqrt{n}}\text{,}
+\end{equation}``
+which indicates that sample averages are more variable for smaller sample sizes, and less variable for larger sample sizes.
+
+## My Approach to the Problem
+
+When I ran into this particular problem for the first time in my professional work, I took into account all of the problems with comparing averages and executing a two-sample ``$t$``-test I've mentioned. In addition to that, since I had the data set available to me, I compared percentiles from the 1st through the 99th percentiles. Despite that the average of the post-survey data set was higher than that of the pre-survey data set, what I found was that **the 1st through the 97th percentiles were identical**. Therefore, I told the user that although the post-survey average was higher than that of the pre-survey, I could not safely conclude that (in the context provided above) the training helped to improve satisfaction of the customers.
+
+## Caveats to My Approach
+
+The approach I outlied above is easily done when you have a small number of samples to work with, but it is not a scalable approach for situations in which, for example, you might be comparing means for multiple questions. In general, the practice I've adopted has been a multi-step process:
+
+- Assess the sample sizes for the normality assumption.
+
+- Use a two-sample ``$t$``-test based on a ``$p$``-value less than ``$0.01$``.
+
+- Compute Cohen's ``$d$`` and see if ``$d > 0.2$``.
+
+However, it should be emphasized that the practice I've used **depends on the context of the situation** in general. There is not one statistical procedure which I would recommend using in absolutely every situation when it comes to comparing means.
+
