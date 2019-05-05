@@ -6,3 +6,4 @@ layouts/
 public/
 static/
 themes/
+*.html
