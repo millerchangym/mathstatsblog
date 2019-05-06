@@ -115,5 +115,5 @@ The approach I outlied above is easily done when you have a small number of samp
 
 - Compute Cohen's ``$d$`` and see if ``$d > 0.2$``.
 
-However, it should be emphasized that the practice I've used **depends on the context of the situation** in general. There is not one statistical procedure which I would recommend using in absolutely every situation when it comes to comparing means.
+However, it should be emphasized that the approach I've used **depends on the context of the situation** in general. There is not one statistical procedure which I would recommend using in absolutely every situation when it comes to comparing means.
 
