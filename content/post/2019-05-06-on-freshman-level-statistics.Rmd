@@ -96,7 +96,7 @@ In freshman-level statistics courses, one is taught that (holding everything els
 
 ### There is more to the story than the sample average.
 
-Especially in situations where users may only compare sample averages, the differing sample sizes between the two samples implies that individuals chosen from both surveys have unequal influence. In the pre-survey sample average, each individual has weight ``$\dfrac{1}{1000}$``. In the post-survey sample average, each individual has weight ``$\dfrac{1}{500}$``, which is **twice** the influence of an individual in the pre-survey sample average. This is an informal way of of illustrating the consequences of the standard-deviation formula
+Especially in situations where users may only compare sample averages, the differing sample sizes between the two samples implies that individuals chosen from both surveys have unequal influence. In the pre-survey sample average, each individual has weight ``$\dfrac{1}{1000}$``. In the post-survey sample average, each individual has weight ``$\dfrac{1}{500}$``, which is **twice** the influence of an individual in the pre-survey sample average. This is an informal way of illustrating the consequences of the standard-deviation formula
 ``\begin{equation}
 \text{SD}\left(\bar{X}\right) = \dfrac{\sigma}{\sqrt{n}}\text{,}
 \end{equation}``
