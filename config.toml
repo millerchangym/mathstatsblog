@@ -1,4 +1,4 @@
-baseurl = "https://vibrant-babbage-4726a0.netlify.com/"
+baseurl = "/"
 languageCode = "en-us"
 title = "Mathematics and Statistics"
 theme = "hugo-xmin"
@@ -7,6 +7,9 @@ disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 preserveTaxonomyNames = true
 footnotereturnlinkcontents = "↩"
+
+[permalinks]
+    post = "/:year/:month/:day/:slug/"
 
 [[menu.main]]
     name = "Home"
