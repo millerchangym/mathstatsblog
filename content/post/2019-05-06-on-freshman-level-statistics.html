@@ -31,6 +31,7 @@ tags:
 <p>with rating scale 1, 2, 3, 4, and 5; 5 being extremely satisfied, 3 being neutral, and 1 being extremely dissatisfied.</p>
 <p>You survey 1000 people, and compute the average rating. The average score is 3.2, and let’s suppose that the sample standard deviation is 0.3.</p>
 <p>Because of the magnitude of complaints that you’ve gotten, you implement a training for your cashiers (because you have to), and you ask another 500 people the same question as the previous one. The average score after the training is 3.3, with a standard deviation of 0.3.</p>
+<p>Using your samples before and after the training for your cashiers, you implement a two-sample <code>$t$</code>-test and compute a <code>$p$</code>-value.</p>
 <pre class="r"><code>sattherwaite_df &lt;- function(s_1, n_1, s_2, n_2) {
   numerator &lt;- (s_1^2/n_1 + s_2^2/n_2)^2
   denominator &lt;- (1/(n_1-1))*(s_1^2/n_1)^2 + (1/(n_2-1))*(s_2^2/n_2)^2
