@@ -2,7 +2,6 @@
 title: On Freshman-Level Statistics
 author: Yeng Miller-Chang
 date: "2019-05-05"
-draft: no
 tags:
   - statistics
   - education
