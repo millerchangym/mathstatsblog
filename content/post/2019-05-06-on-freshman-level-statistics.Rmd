@@ -92,7 +92,7 @@ The ``$t$``-test example posed above uses a [Likert scale](https://en.wikipedia.
 
 ### Large samples are a problem.
 
-In freshman-level statistics courses, one is taught that (holding everything else constant) increasing sample sizes increases the probability of rejecting ``$H_0$`` for a hypothesis test when ``$H_1$`` is true (one can simply look at the formula of the test statistic to see this). However, given the magnitude of the sample sizes that we have in this example, one could argue even a very small difference in the means would lead to rejecting ``$H_0$``. Some simple computation can show that all it takes is a mean slightly larger than 3.24 to have a ``$p$``-value less than 0.01. Social scientists have tried to address this problem using metrics such as Coehn's ``$d$`` (a.k.a. "effect size"), but I do not know of any version of Coehn's ``$d$`` allowing for unequal population standard deviations.
+In freshman-level statistics courses, one is taught that (holding everything else constant) increasing sample sizes increases the probability of rejecting ``$H_0$`` for a hypothesis test (one can simply look at the formula of the test statistic to see this). However, given the magnitude of the sample sizes that we have in this example, one could argue even a very small difference in the means would lead to rejecting ``$H_0$``. Some simple computation can show that all it takes is a mean slightly larger than 3.24 to have a ``$p$``-value less than 0.01. Social scientists have tried to address this problem using metrics such as Coehn's ``$d$`` (a.k.a. "effect size"), but I do not know of any version of Coehn's ``$d$`` allowing for unequal population standard deviations.
 
 ### There is more to the story than the sample average.
 
