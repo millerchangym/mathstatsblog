@@ -110,13 +110,13 @@ When I ran into this particular problem for the first time in my professional wo
 
 ## Caveats to My Approach
 
-The approach I outlied above is easily done when you have a small number of samples to work with, but it is not a scalable approach for situations in which, for example, you might be comparing means for multiple questions. In general, the practice I've adopted has been a multi-step process:
+The approach I outlined above is easily done when you have a small number of samples to work with, but it is not a scalable approach for situations in which, for example, you might be comparing means for multiple questions. In general, the practice I've adopted has been a multi-step process:
 
 - Assess the sample sizes for the normality assumption.
 
 - Use a two-sample ``$t$``-test based on a ``$p$``-value less than ``$0.01$``.
 
-- Compute Cohen's ``$d$`` and see if ``$d > 0.2$``.
+- Compute Coehn's ``$d$`` and see if ``$d > 0.2$``.
 
 However, it should be emphasized that the approach I've used **depends on the context of the situation** in general. There is not one statistical procedure which I would recommend using in absolutely every situation when it comes to comparing means.
 
