@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://vibrant-babbage-4726a0.netlify.com/"
 languageCode = "en-us"
 title = "Mathematics and Statistics"
 theme = "hugo-xmin"
